@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Адвент-календарь</title>
+
+<style>
+    body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        background: #f4f4f4;
+        font-family: Arial, sans-serif;
+    }
+
+    .calendar-container {
+        position: relative;
+        width: 1280px;
+        height: 720px;
+    }
+
+    .calendar-image {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+    .day {
+        position: absolute;
+        width: 90px;
+        height: 60px;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+
+    .tooltip {
+        position: absolute;
+        background: rgba(0,0,0,0.85);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 14px;
+        pointer-events: none;
+        opacity: 0;
+        transform: translateY(-8px);
+        transition: opacity 0.18s ease, transform 0.18s ease;
+        white-space: nowrap;
+        z-index: 999;
+    }
+
+    .modal-bg {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        width: 350px;
+        text-align: center;
+    }
+
+    .close-btn {
+        margin-top: 15px;
+        cursor: pointer;
+        background: #e0e0e0;
+        padding: 8px 14px;
+        border-radius: 6px;
+        display: inline-block;
+    }
+
+    .modal a {
+        color: #0077ff;
+        text-decoration: none;
+    }
+
+    .modal a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+<body>
+
+<div class="calendar-container">
+    <img src="advent.png" class="calendar-image" alt="Адвент календарь">
+
+    <!-- СОБЫТИЯ С ПОДДЕРЖКОЙ HTML -->
+    <div class="day"
+     style="left:360px; top:130px;"
+     data-title="26 ноября"
+     data-html="<strong>День домашней кухни «Гарри Поттер»</strong><br><br>
+     Описание события:<br>
+     <a href='https://t.me/c/2269438761/521' target='_blank'>Открыть пост</a><br><br>
+     Записаться:<br>
+     <a href='https://t.me/c/2269438761/520' target='_blank'>Голосование</a>">
+    </div>
+
+    <div class="day"
+     style="left:560px; top:130px;"
+     data-title="27 ноября"
+     data-html="<strong>Лучшее Соревнование Детективов</strong><br><br>
+     Описание события:<br>
+     <a href='https://t.me/c/2269438761/533' target='_blank'>Открыть пост</a><br><br>
+     Записаться:<br>
+     <a href='https://t.me/c/2269438761/534' target='_blank'>Голосование</a>">
+    </div>
+
+ <div class="day"
+     style="left:965px; top:132px;"
+     data-title="29 ноября — 3 декабря"
+     data-html="<strong>Поездка в Армению</strong><br><br>
+     Описание события:<br>
+     <a href='https://t.me/c/2269438761/550' target='_blank'>Открыть пост</a><br><br>
+     Записаться:<br>
+     <a href='https://t.me/c/2269438761/551' target='_blank'>Голосование</a>">
+    </div>
+
+    <div class="day" data-title="Поездка в Армению" data-html="30 ноября" style="top:130px; left:1120px;"></div>
+    <div class="day" data-title="Поездка в Армению" data-html="01 декабря" style="top:240px; left:130px;"></div>
+    <div class="day" data-title="Поездка в Армению" data-html="02 декабря" style="top:240px; left:300px;"></div>
+    <div class="day" data-title="Поездка в Армению" data-html="03 декабря" style="top:240px; left:490px;"></div>
+
+    <div class="day"
+     style="left:230px; top:350px;"
+     data-title="9 декабря"
+     data-html="<strong>Лазертаг</strong><br><br>
+     Описание события:<br>
+     <a href='https://t.me/c/2269438761/548' target='_blank'>Открыть пост</a><br><br>
+     Записаться:<br>
+     <a href='https://t.me/c/2269438761/549' target='_blank'>Голосование</a>">
+    </div>
+
+<div class="day"
+     style="left:810px; top:460px;"
+     data-title="19 декабря"
+     data-html="<strong>Корпоратив «Новый год»</strong><br><br>
+     Описание события:<br>
+     <a href='https://t.me/c/2034026447/496' target='_blank'>Открыть пост</a><br><br>
+     Добавить встречу в календарь:<br>
+     <a href='https://calendar.yandex-team.ru/event/262813514?applyToFuture=0&event_date=2025-12-19T15%3A00%3A00&layerId=1337261&show_date=2025-12-19' target='_blank'>Встреча</a>">
+    </div>
+
+  
+    <!-- ПУСТЫЕ ЯЧЕЙКИ -->
+    <div class="day" data-title="" data-html="" style="top:160px; left:690px;"></div>
+    <div class="day" data-title="" data-html="" style="top:260px; left:650px;"></div>
+    <div class="day" data-title="" data-html="" style="top:260px; left:810px;"></div>
+    <div class="day" data-title="" data-html="" style="top:280px; left:1010px;"></div>
+    <div class="day" data-title="" data-html="" style="top:300px; left:1120px;"></div>
+    <div class="day" data-title="" data-html="" style="top:360px; left:170px;"></div>
+    <div class="day" data-title="" data-html="" style="top:360px; left:490px;"></div>
+    <div class="day" data-title="" data-html="" style="top:360px; left:650px;"></div>
+    <div class="day" data-title="" data-html="" style="top:360px; left:810px;"></div>
+    <div class="day" data-title="" data-html="" style="top:380px; left:1010px;"></div>
+    <div class="day" data-title="" data-html="" style="top:400px; left:1120px;"></div>
+    <div class="day" data-title="" data-html="" style="top:470px; left:170px;"></div>
+    <div class="day" data-title="" data-html="" style="top:470px; left:330px;"></div>
+    <div class="day" data-title="" data-html="" style="top:470px; left:490px;"></div>
+    <div class="day" data-title="" data-html="" style="top:470px; left:650px;"></div>
+    <div class="day" data-title="" data-html="" style="top:500px; left:1010px;"></div>
+    <div class="day" data-title="" data-html="" style="top:520px; left:1120px;"></div>
+    <div class="day" data-title="" data-html="" style="top:580px; left:170px;"></div>
+    <div class="day" data-title="" data-html="" style="top:580px; left:330px;"></div>
+    <div class="day" data-title="" data-html="" style="top:580px; left:490px;"></div>
+    <div class="day" data-title="" data-html="" style="top:580px; left:650px;"></div>
+    <div class="day" data-title="" data-html="" style="top:580px; left:810px;"></div>
+    <div class="day" data-title="" data-html="" style="top:630px; left:1010px;"></div>
+    <div class="day" data-title="" data-html="" style="top:640px; left:1120px;"></div>
+    <div class="day" data-title="" data-html="" style="top:680px; left:170px;"></div>
+    <div class="day" data-title="" data-html="" style="top:680px; left:330px;"></div>
+</div>
+
+<div class="modal-bg" id="modal-bg">
+    <div class="modal" id="modal">
+        <h2 id="modal-title"></h2>
+        <div id="modal-html"></div>
+        <div class="close-btn" id="close-btn">Закрыть</div>
+    </div>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+    const tooltip = document.getElementById('tooltip');
+    const days = document.querySelectorAll('.day');
+    const modalBg = document.getElementById('modal-bg');
+    const modalTitle = document.getElementById('modal-title');
+    const modalHtml = document.getElementById('modal-html');
+    const closeBtn = document.getElementById('close-btn');
+
+    // ПОДСКАЗКА
+    days.forEach(day => {
+        day.addEventListener('mousemove', e => {
+            if (day.dataset.title.trim() !== "") {
+                tooltip.innerText = day.dataset.title;
+                tooltip.style.left = (e.pageX + 15) + "px";
+                tooltip.style.top = (e.pageY - 10) + "px";
+                tooltip.style.opacity = 1;
+                tooltip.style.transform = "translateY(0px)";
+            }
+        });
+
+        day.addEventListener('mouseleave', () => {
+            tooltip.style.opacity = 0;
+            tooltip.style.transform = "translateY(-8px)";
+        });
+    });
+
+    // МОДАЛЬНОЕ ОКНО С HTML
+    days.forEach(day => {
+        day.addEventListener('click', () => {
+            if (day.dataset.title.trim() !== "") {
+                modalTitle.textContent = day.dataset.title;
+                modalHtml.innerHTML = day.dataset.html;
+                modalBg.style.display = "flex";
+            }
+        });
+    });
+
+    closeBtn.addEventListener('click', () => {
+        modalBg.style.display = "none";
+    });
+
+    modalBg.addEventListener('click', e => {
+        if (e.target === modalBg) modalBg.style.display = "none";
+    });
+</script>
+
+</body>
+</html>
